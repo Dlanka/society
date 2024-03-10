@@ -6,6 +6,7 @@ class UserController extends BaseController {
     super(UserRepository);
   }
 
+  
   create = async (req, res) => {
     try {
       const { email, name, password } = req.body;
