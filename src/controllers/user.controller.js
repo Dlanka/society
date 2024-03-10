@@ -1,5 +1,4 @@
 const { BaseController } = require("../base");
-const { BadRequestError } = require("../errors");
 const { UserRepository } = require("../repositories");
 
 class UserController extends BaseController {
@@ -14,8 +13,14 @@ class UserController extends BaseController {
       const user = await this.repo.findOne({ email });
 
       if (user) {
-        return res.badRequest("Email already exist");
-        // throw new BadRequestError("Email already exist");
+        return res.badRequest(
+          {
+            errors: {
+              email: "Email already exist",
+            },
+          },
+          "Email already exist"
+        );
       }
 
       const doc = await this.repo.create({

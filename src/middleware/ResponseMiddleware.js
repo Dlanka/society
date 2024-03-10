@@ -28,7 +28,7 @@ const ResponseMiddleware = function (req, res, next) {
     code = 400,
     result = null
   ) {
-    return res.status(code).error({ errors, code, message, result });
+    return res.status(code).error({ code, message, errors, result });
   };
 
   res.forbidden = function (
